@@ -1,23 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useReducer} from 'react';
 import './App.css';
 
+import TodoForm from './Components/ToDoForm'
 import ToDoList from './Components/ToDoList'
-import {todoReducer, initialState }from './reducers/todoReducer'
 
-class App extends React.Component {
-  constructor(){
-    super()
-    this.state = {initialState}
-  }
+import { initialState, todoReducer } from './reducers/todoReducer'
 
-  render(){
+function App (){
+  const [state, dispatch] = useReducer(todoReducer, initialState)
+
     return (
       <div className="App">
-        <ToDoList todos={this.state.initialState.todos}/>
+        <TodoForm  dispatch={dispatch} />
+        <ToDoList state={state} dispatch={dispatch}/>
       </div>
     );
-  }
   }
 
 export default App;

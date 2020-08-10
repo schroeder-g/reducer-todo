@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useReducer} from 'react'
 import ToDoCard from './ToDoCard'
 
+import {todoReducer, initialState} from '../reducers/todoReducer'
+
+
 const ToDoList = (props) => {
-   console.log(props)
     return (
         <div className="todo-list">
             {
-                props.todos.map( todo => {
-                    return <ToDoCard todo={todo} key={todo.id}/>
+                props.state.todos.map( todo => {
+                    return <ToDoCard todo={todo} key={todo.id} id={todo.id} dispatch={props.dispatch}/>
                 })
             }
         </div>

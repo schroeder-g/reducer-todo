@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 
-const ToDoCard = (props) => {
-    const { todo } = props
+const ToDoCard = ({ todo, id, dispatch}) => {
     return (
-        <div>
+        <div 
+            className={ !todo.completed? "todo-card" : "todo-card completed"}
+            onClick={() => dispatch({type: "TOGGLE_COMPLETED", payload: id })}
+
+        >
             <h3>{todo.task}</h3>
         </div>
     )
